@@ -2,4 +2,4 @@
 FSDIntercept. A tool built whilst research was conducted on the FSD Protocol 
 
 ## How did this come about?
-Got bored one day and figured I'd develop my understanding on TCP Packet Sniffing. (plus the FSD Protocol is non-encrypted and in plaintext)
+Decided to do some research into the FSD Protocol used by VATSIM and IVAO, then build a tool out of it
