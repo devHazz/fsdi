@@ -1,14 +1,23 @@
 package model
 
 type ClientIdentify struct {
-	callsign        string
-	clientId        int
-	versionExpanded string
-	networkId       int
-	uniqueId        int
+	Callsign        string
+	ClientId        int
+	VersionExpanded string
+	NetworkId       int
+	UniqueId        int
 }
 
 type ClientRequest struct {
-	callsign    string
-	requestType string
+	Requester   string
+	Requestee   string
+	RequestType string
+}
+
+type ClientResponse struct {
+}
+
+type DeleteClientRequest struct {
+	Callsign  string
+	NetworkId int
 }

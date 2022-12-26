@@ -36,10 +36,12 @@ func main() {
 	for packet := range source.Packets() {
 		if packet != nil && packet.ApplicationLayer() != nil {
 			payload := string(packet.ApplicationLayer().Payload())
-			pType, valid := parser.GetType(payload)
-			if valid {
-				fmt.Println(pType.Name + fmt.Sprintf(" | %s", payload))
+			if payload == "" || len(payload) == 0 {
+				src := packet.NetworkLayer().NetworkFlow().Src().String()
+				dst := packet.NetworkLayer().NetworkFlow().Dst().String()
+				fmt.Printf("could not get payload for packet: %s->%s", src, dst)
 			}
+			parser.Parse(payload)
 		}
 	}
 }

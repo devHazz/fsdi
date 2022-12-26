@@ -1,9 +1,10 @@
 package model
 
 type AddPilotRequest struct {
-	callsign        string
-	networkId       int
-	protocolVersion int
-	rating          int
-	fullName        string
+	Callsign        string
+	NetworkId       int
+	Unk1            int
+	ProtocolVersion int
+	Rating          int
+	FullName        string
 }

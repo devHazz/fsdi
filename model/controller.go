@@ -1,22 +1,23 @@
 package model
 
 type ControllerPositionUpdate struct {
-	callsign     string
-	rating       int
-	lat          string
-	long         string
-	altitude     string
-	frequency    string
-	facilityType int
-	visualRange  int
+	Callsign     string
+	Rating       int
+	Lat          string
+	Long         string
+	Altitude     string
+	Frequency    string
+	FacilityType int
+	VisualRange  int
 }
 
 type AddControllerRequest struct {
-	callsign       string
-	fullName       string
-	networkId      int
-	password       string
-	atcRating      int
-	positionUpdate ControllerPositionUpdate
-	clientRequests []ClientRequest
+	Callsign  string
+	FullName  string
+	NetworkId int
+	//Password       string
+	AtcRating       int
+	ProtocolVersion int
+	//PositionUpdate ControllerPositionUpdate
+	//ClientRequests []ClientRequest
 }
