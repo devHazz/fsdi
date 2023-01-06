@@ -15,9 +15,10 @@ type AddControllerRequest struct {
 	Callsign  string
 	FullName  string
 	NetworkId int
-	//Password       string
+	//Password        string `local:"true"`
 	AtcRating       int
 	ProtocolVersion int
+	//TODO: Add remaining data for VATSIM Connection with "local" struct tag
 	//PositionUpdate ControllerPositionUpdate
 	//ClientRequests []ClientRequest
 }

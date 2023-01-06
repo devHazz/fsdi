@@ -1,21 +1,20 @@
 package model
 
 type ServerIdentify struct {
-	Version         string
+	Unk1            string
+	Unk2            string
 	VersionExpanded string
+	Token           string
 }
 
 type MessageOfTheDay struct {
+	Unk1     string
 	Callsign string
 	Message  string
 }
 
-type FSDHeader struct {
-	Id   int
-	Name string
-}
-
 type FSDPacket struct {
-	*FSDHeader
-	data interface{}
+	Id          int
+	CommandType int
+	Data        interface{}
 }

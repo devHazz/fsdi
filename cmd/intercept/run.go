@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/devHazz/fsdi/parser"
+	cereal "github.com/devHazz/fsdi"
 	"github.com/devHazz/fsdi/sniffer"
 	"github.com/google/gopacket"
 	"io"
@@ -13,7 +13,7 @@ import (
 
 type Config struct {
 	InterfaceName string `json:"interfaceName"`
-	SnapLen       string `json:"SnapLen"`
+	SnapLen       string `json:"snapLen"`
 }
 
 var config Config
@@ -36,12 +36,19 @@ func main() {
 	for packet := range source.Packets() {
 		if packet != nil && packet.ApplicationLayer() != nil {
 			payload := string(packet.ApplicationLayer().Payload())
+			flow := packet.NetworkLayer().NetworkFlow()
 			if payload == "" || len(payload) == 0 {
-				src := packet.NetworkLayer().NetworkFlow().Src().String()
-				dst := packet.NetworkLayer().NetworkFlow().Dst().String()
+				src := flow.Src().String()
+				dst := flow.Dst().String()
 				fmt.Printf("could not get payload for packet: %s->%s", src, dst)
 			}
-			parser.Parse(payload)
+			p, err := cereal.Deserialize(payload)
+			if err != nil {
+				fmt.Println(err)
+			}
+			if p.Id != 0 || p.Data != nil {
+				fmt.Printf("FSD Packet: id=%d, commandType=%d, structData=%#v\n", p.Id, p.CommandType, p.Data)
+			}
 		}
 	}
 }
